@@ -27,6 +27,29 @@ Launches the test runner in interactive watch mode.
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
+## Architecture Diagram
+
+A presentation-ready horizontal architecture diagram is available at route `/architecture`.
+
+- Component: `src/components/ArchitectureDiagram.jsx`
+- Page: `src/pages/Architecture.jsx`
+- Styles: `src/styles/architecture.css`
+- Icons: `src/components/icons/*Icon.jsx`
+
+How to modify:
+1. Open `ArchitectureDiagram.jsx` and update the `layers` configuration to add/remove callouts or change labels.
+2. Adjust the palette in `src/styles/architecture.css` (CSS variables for layer colors and backgrounds).
+3. Icons are inline SVG and accessible; pass `size`, `title`, and `color` props for tweaks.
+
+Accessibility and Responsiveness:
+- Icons have `aria-label` and `<title>` for screen readers.
+- Colors ensure contrast; high-contrast mode improves borders.
+- Layout remains readable at 1366x768 without scrolling (single-slide view).
+
+Navigation:
+- From the app header, use the "Architecture" link.
+- A lightweight History API router is implemented in `src/App.js` (no extra dependency).
+
 ## Customization
 
 ### Colors
