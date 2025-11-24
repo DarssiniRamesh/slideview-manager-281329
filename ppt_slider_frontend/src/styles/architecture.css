@@ -12,39 +12,45 @@
   --infra-bg: #f1f5f9;
 
   --card-bg: #ffffff;
-  --card-text: #111827;      /* darker text for higher contrast */
-  --muted: #374151;          /* darker muted text for WCAG contrast */
-  --border: rgba(17, 24, 39, 0.14);
+  --card-text: #0f172a;      /* darker text for higher contrast */
+  --muted: #1f2937;          /* darker muted text for WCAG contrast */
+  --border: rgba(15, 23, 42, 0.14);
   --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 6px 14px rgba(0,0,0,0.06);
 }
 
 .arch-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 24px 20px 36px;
+  padding: 22px 18px 30px; /* slightly tighter to compensate larger fonts */
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px; /* tighten vertical rhythm */
   color: var(--card-text);
+  box-sizing: border-box;
 }
 
 .arch-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .arch-title {
-  font-size: 26px;
-  font-weight: 750;
+  font-size: 30px;    /* increased */
+  line-height: 1.15;  /* tighter */
+  font-weight: 800;   /* heavier */
   color: var(--card-text);
-  letter-spacing: 0.2px;
+  letter-spacing: 0.1px;
+  margin: 0;
 }
 
 .arch-subtitle {
-  font-size: 14px;
+  font-size: 15px;    /* increased */
+  line-height: 1.25;  /* tighter */
   color: var(--muted);
+  margin: 2px 0 0 0;
 }
 
 .arch-board {
@@ -52,50 +58,54 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: var(--shadow);
-  padding: 22px;
+  padding: 18px;          /* slightly reduced to offset larger text */
   overflow: hidden;
+  max-width: 100%;        /* keep container width fixed to its parent */
+  box-sizing: border-box;
 }
 
 .arch-row {
   display: grid;
-  grid-template-columns: 170px 1fr;
+  grid-template-columns: 164px 1fr; /* slightly reduced label column to compensate */
   align-items: stretch;
   border-radius: 10px;
-  padding: 14px 16px;
-  gap: 14px;
+  padding: 10px 12px;     /* tighter padding */
+  gap: 12px;              /* tighter card spacing */
   position: relative;
 }
 
 .arch-row + .arch-row {
-  margin-top: 12px;
+  margin-top: 10px;       /* reduced to maintain overall height */
 }
 
 .arch-row .layer-label {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-weight: 700;
-  letter-spacing: 0.3px;
+  font-weight: 800;        /* heavier */
+  letter-spacing: 0.2px;
   color: var(--card-text);
 }
 
 .layer-label .chip {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   border: 1px solid currentColor;
-  padding: 8px 12px;
-  border-radius: 10px;
+  padding: 6px 10px;       /* tighter padding */
+  border-radius: 9px;
   background: rgba(255,255,255,0.7);
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;         /* increased */
+  line-height: 1.1;        /* tight */
+  font-weight: 700;        /* heavier */
+  white-space: nowrap;
 }
 
 .arch-cards {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(200px, 1fr);
-  gap: 14px;
+  grid-auto-columns: minmax(196px, 1fr); /* slightly reduced min to keep width stable */
+  gap: 12px;              /* slightly tighter to fit increased text */
   align-items: center;
 }
 
@@ -105,17 +115,19 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   box-shadow: var(--shadow);
-  padding: 12px 14px;
-  min-height: 76px;
+  padding: 10px 12px;     /* reduced to offset larger fonts */
+  min-height: 74px;       /* slightly reduced to balance overall height */
   display: flex;
   flex-direction: column;
   gap: 6px;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .arch-card .title {
-  font-weight: 650;
-  font-size: 14px;
+  font-weight: 750;       /* heavier */
+  font-size: 15.5px;      /* increased */
+  line-height: 1.2;       /* tighter */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -123,11 +135,12 @@
 
 .arch-card .title svg {
   color: var(--card-text); /* keep icons dark so they don't wash out */
+  flex: 0 0 auto;
 }
 
 .arch-card .body {
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: 14px;        /* increased */
+  line-height: 1.35;      /* slightly tightened */
   color: var(--muted);
 }
 
@@ -149,32 +162,47 @@
 @media (max-width: 1280px) {
   .arch-cards {
     grid-auto-columns: minmax(180px, 1fr);
+    gap: 10px;
   }
-  .arch-title { font-size: 24px; }
+  .arch-title { font-size: 28px; }
+  .arch-subtitle { font-size: 14.5px; }
+  .arch-row { grid-template-columns: 160px 1fr; }
 }
 @media (max-width: 1024px) {
   .arch-cards {
     grid-auto-columns: minmax(160px, 1fr);
+    gap: 10px;
   }
-  .arch-title { font-size: 22px; }
+  .arch-title { font-size: 24px; }
+  .arch-subtitle { font-size: 14px; }
+  .layer-label .chip { font-size: 13.5px; padding: 6px 9px; }
 }
 
 /* Tablet/phone: stack rows but keep within viewport height */
 @media (max-width: 768px) {
   .arch-container {
-    padding: 16px 12px 24px;
+    padding: 14px 10px 20px;
   }
   .arch-row {
-    grid-template-columns: 140px 1fr;
-    padding: 10px 12px;
-  }
-  .arch-cards {
-    grid-auto-columns: minmax(140px, 1fr);
+    grid-template-columns: 138px 1fr; /* keep label compact */
+    padding: 8px 10px;
     gap: 10px;
   }
+  .arch-cards {
+    grid-auto-columns: minmax(138px, 1fr);
+    gap: 8px;
+  }
   .arch-card {
-    min-height: 64px;
-    padding: 10px;
+    min-height: 62px;
+    padding: 9px;
+  }
+  .arch-card .title {
+    font-size: 15px;
+    line-height: 1.2;
+  }
+  .arch-card .body {
+    font-size: 13.5px;
+    line-height: 1.3;
   }
 }
 
