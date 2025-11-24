@@ -8,8 +8,8 @@ import CloudIcon from "./icons/CloudIcon";
 
 /**
  * PUBLIC_INTERFACE
- * ArchitectureDiagram renders a horizontally layered architecture with color-coded rows
- * and a single, clear left-to-right arrow per layer. It is presentation-ready and responsive.
+ * ArchitectureDiagram renders a horizontally layered architecture with color-coded rows.
+ * It is presentation-ready, responsive, and excludes arrow or connector graphics.
  *
  * How to modify:
  * - Update the 'layers' configuration below to adjust labels/callouts.
@@ -95,34 +95,12 @@ const ArchitectureDiagram = () => {
     },
   ];
 
-  // Single subtle arrow used once per layer to indicate left-to-right flow
-  const LayerArrow = ({ color = "#6b7280" /* slate-500 */ }) => (
-    <svg
-      className="arch-arrow"
-      width="96"
-      height="28"
-      role="img"
-      aria-label="Directional arrow"
-      viewBox="0 0 96 28"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4 14h76M70 6l16 8-16 8"
-        stroke={color}
-        strokeWidth="1.6"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-
   return (
     <section className="arch-container" aria-label="Architecture diagram">
       <header className="arch-header">
         <h1 className="arch-title">Platform Architecture</h1>
         <p className="arch-subtitle" aria-label="single-slide-info">
-          Horizontal layered view with directional flow and key modules
+          Clean horizontal layered view with key modules
         </p>
       </header>
 
@@ -158,9 +136,6 @@ const ArchitectureDiagram = () => {
                 </div>
               ))}
             </div>
-
-            {/* Single arrow per layer to indicate flow; no per-card arrows */}
-            <LayerArrow />
           </div>
         ))}
       </div>

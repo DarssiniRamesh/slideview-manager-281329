@@ -131,14 +131,7 @@
   color: var(--muted);
 }
 
-.arch-arrow {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  translate: 0 -50%;
-  pointer-events: none;
-  opacity: 0.55; /* subtle but visible */
-}
+/* Removed .arch-arrow and any connector styles to eliminate arrows */
 
 .arch-row.frontend { background: var(--frontend-bg); border: 1px solid color-mix(in oklab, var(--frontend) 28%, white); }
 .arch-row.middleware { background: var(--middleware-bg); border: 1px solid color-mix(in oklab, var(--middleware) 28%, white); }
