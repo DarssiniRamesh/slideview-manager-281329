@@ -8,12 +8,12 @@ import CloudIcon from "./icons/CloudIcon";
 
 /**
  * PUBLIC_INTERFACE
- * ArchitectureDiagram renders a horizontally layered architecture with color-coded rows,
- * left-to-right arrows, and labeled callouts. It is presentation-ready and responsive.
+ * ArchitectureDiagram renders a horizontally layered architecture with color-coded rows
+ * and a single, clear left-to-right arrow per layer. It is presentation-ready and responsive.
  *
  * How to modify:
  * - Update the 'layers' configuration below to adjust labels/callouts.
- * - Colors are defined in src/styles/architecture.css as CSS variables per layer.
+ * - Colors and typography are defined in src/styles/architecture.css.
  */
 const ArchitectureDiagram = () => {
   // Data-driven configuration of layers and callouts for easy tweaks
@@ -95,20 +95,21 @@ const ArchitectureDiagram = () => {
     },
   ];
 
-  const Arrow = ({ color = "#94a3b8" }) => (
+  // Single subtle arrow used once per layer to indicate left-to-right flow
+  const LayerArrow = ({ color = "#6b7280" /* slate-500 */ }) => (
     <svg
       className="arch-arrow"
-      width="64"
-      height="24"
+      width="96"
+      height="28"
       role="img"
       aria-label="Directional arrow"
-      viewBox="0 0 64 24"
+      viewBox="0 0 96 28"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M2 12h54M46 5l10 7-10 7"
+        d="M4 14h76M70 6l16 8-16 8"
         stroke={color}
-        strokeWidth="2"
+        strokeWidth="1.6"
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -125,15 +126,30 @@ const ArchitectureDiagram = () => {
         </p>
       </header>
 
-      <div className="arch-board" role="img" aria-label="Horizontally layered architecture with five layers and callouts">
-        {layers.map((layer, idx) => (
-          <div className={`arch-row ${layer.key}`} key={layer.key} aria-label={`${layer.label} layer`}>
+      <div
+        className="arch-board"
+        role="img"
+        aria-label="Horizontally layered architecture with five layers and callouts"
+      >
+        {layers.map((layer) => (
+          <div
+            className={`arch-row ${layer.key}`}
+            key={layer.key}
+            aria-label={`${layer.label} layer`}
+          >
             <div className={`layer-label ${layer.key}`}>
-              <span className="chip" aria-label={`${layer.label} label`}>{layer.label}</span>
+              <span className="chip" aria-label={`${layer.label} label`}>
+                {layer.label}
+              </span>
             </div>
+
             <div className="arch-cards">
               {layer.callouts.map((c) => (
-                <div className="arch-card" key={`${layer.key}-${c.title}`} aria-label={`${c.title} callout`}>
+                <div
+                  className="arch-card"
+                  key={`${layer.key}-${c.title}`}
+                  aria-label={`${c.title} callout`}
+                >
                   <div className="title">
                     {c.icon}
                     <span>{c.title}</span>
@@ -142,7 +158,9 @@ const ArchitectureDiagram = () => {
                 </div>
               ))}
             </div>
-            <Arrow />
+
+            {/* Single arrow per layer to indicate flow; no per-card arrows */}
+            <LayerArrow />
           </div>
         ))}
       </div>

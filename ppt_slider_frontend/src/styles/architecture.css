@@ -12,10 +12,10 @@
   --infra-bg: #f1f5f9;
 
   --card-bg: #ffffff;
-  --card-text: #0f172a;
-  --muted: #475569;
-  --border: rgba(15, 23, 42, 0.12);
-  --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.06);
+  --card-text: #111827;      /* darker text for higher contrast */
+  --muted: #374151;          /* darker muted text for WCAG contrast */
+  --border: rgba(17, 24, 39, 0.14);
+  --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 6px 14px rgba(0,0,0,0.06);
 }
 
 .arch-container {
@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  color: var(--card-text);
 }
 
 .arch-header {
@@ -35,8 +36,8 @@
 }
 
 .arch-title {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 750;
   color: var(--card-text);
   letter-spacing: 0.2px;
 }
@@ -51,22 +52,22 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: var(--shadow);
-  padding: 20px;
+  padding: 22px;
   overflow: hidden;
 }
 
 .arch-row {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 170px 1fr;
   align-items: stretch;
   border-radius: 10px;
-  padding: 12px;
-  gap: 12px;
+  padding: 14px 16px;
+  gap: 14px;
   position: relative;
 }
 
 .arch-row + .arch-row {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .arch-row .layer-label {
@@ -83,17 +84,18 @@
   align-items: center;
   gap: 8px;
   border: 1px solid currentColor;
-  padding: 8px 10px;
+  padding: 8px 12px;
   border-radius: 10px;
-  background: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.7);
   font-size: 13px;
+  font-weight: 600;
 }
 
 .arch-cards {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(180px, 1fr);
-  gap: 12px;
+  grid-auto-columns: minmax(200px, 1fr);
+  gap: 14px;
   align-items: center;
 }
 
@@ -103,8 +105,8 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   box-shadow: var(--shadow);
-  padding: 12px;
-  min-height: 72px;
+  padding: 12px 14px;
+  min-height: 76px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -112,16 +114,20 @@
 }
 
 .arch-card .title {
-  font-weight: 700;
+  font-weight: 650;
   font-size: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
+.arch-card .title svg {
+  color: var(--card-text); /* keep icons dark so they don't wash out */
+}
+
 .arch-card .body {
   font-size: 13px;
-  line-height: 1.35;
+  line-height: 1.4;
   color: var(--muted);
 }
 
@@ -131,14 +137,14 @@
   top: 50%;
   translate: 0 -50%;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.55; /* subtle but visible */
 }
 
-.arch-row.frontend { background: var(--frontend-bg); border: 1px solid color-mix(in oklab, var(--frontend) 25%, white); }
-.arch-row.middleware { background: var(--middleware-bg); border: 1px solid color-mix(in oklab, var(--middleware) 25%, white); }
-.arch-row.backend { background: var(--backend-bg); border: 1px solid color-mix(in oklab, var(--backend) 25%, white); }
-.arch-row.blockchain { background: var(--blockchain-bg); border: 1px solid color-mix(in oklab, var(--blockchain) 25%, white); }
-.arch-row.infrastructure { background: var(--infra-bg); border: 1px solid color-mix(in oklab, var(--infra) 25%, white); }
+.arch-row.frontend { background: var(--frontend-bg); border: 1px solid color-mix(in oklab, var(--frontend) 28%, white); }
+.arch-row.middleware { background: var(--middleware-bg); border: 1px solid color-mix(in oklab, var(--middleware) 28%, white); }
+.arch-row.backend { background: var(--backend-bg); border: 1px solid color-mix(in oklab, var(--backend) 28%, white); }
+.arch-row.blockchain { background: var(--blockchain-bg); border: 1px solid color-mix(in oklab, var(--blockchain) 28%, white); }
+.arch-row.infrastructure { background: var(--infra-bg); border: 1px solid color-mix(in oklab, var(--infra) 28%, white); }
 
 .layer-label.frontend { color: var(--frontend); }
 .layer-label.middleware { color: var(--middleware); }
@@ -147,6 +153,12 @@
 .layer-label.infrastructure { color: var(--infra); }
 
 /* Responsive: preserve single-slide readability down to ~1024 width */
+@media (max-width: 1280px) {
+  .arch-cards {
+    grid-auto-columns: minmax(180px, 1fr);
+  }
+  .arch-title { font-size: 24px; }
+}
 @media (max-width: 1024px) {
   .arch-cards {
     grid-auto-columns: minmax(160px, 1fr);
@@ -161,7 +173,7 @@
   }
   .arch-row {
     grid-template-columns: 140px 1fr;
-    padding: 10px;
+    padding: 10px 12px;
   }
   .arch-cards {
     grid-auto-columns: minmax(140px, 1fr);
@@ -175,6 +187,6 @@
 
 /* High contrast consideration */
 @media (prefers-contrast: more) {
-  .arch-card { border-color: #0f172a; }
-  .arch-row { outline: 1px solid #0f172a; }
+  .arch-card { border-color: #111827; }
+  .arch-row { outline: 1px solid #111827; }
 }
