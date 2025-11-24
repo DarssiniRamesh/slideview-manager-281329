@@ -1,1 +1,3 @@
-# slideview-manager-281329
+# Project Repository
+
+This is the initial README file for the project.
